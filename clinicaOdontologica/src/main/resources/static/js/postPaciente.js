@@ -12,6 +12,7 @@ window.addEventListener('load', function () {
             nombre: document.querySelector('#nombre').value,
             apellido: document.querySelector('#apellido').value,
             dni: document.querySelector('#dni').value,
+            email:document.querySelector('#email').value,
             alta: document.querySelector('#fecha_ingreso').value,
             calle: document.querySelector('#domicilio_calle').value,
             numero: document.querySelector('#domicilio_numero').value,
@@ -64,6 +65,7 @@ window.addEventListener('load', function () {
         document.querySelector('#nombre').value = "";
         document.querySelector('#apellido').value = "";
          document.querySelector('#dni').value = "";
+         document.querySelector('#email').value = "";
          document.querySelector('#fecha_ingreso').value = "";
          document.querySelector('#domicilio_calle').value = "";
          document.querySelector('#domicilio_numero').value = "";

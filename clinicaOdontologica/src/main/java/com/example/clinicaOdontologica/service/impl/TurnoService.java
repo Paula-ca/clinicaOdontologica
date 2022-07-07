@@ -9,6 +9,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
@@ -29,9 +31,10 @@ public class TurnoService implements ITurnoService {
     ObjectMapper mapper;
 
     @Override
-    public void crearTurno(Long id_paciente, Long id_odontologo, LocalDateTime datetime) {
+    public void crearTurno(Long id_paciente, Long id_odontologo, Date fecha , Time hora) {
         Turno turno = new Turno();
-        turno.setFechaYHora(datetime);
+        turno.setFecha(fecha);
+        turno.setHora(hora);
         turno.setOdontologo(odontologoRepository.findById(id_odontologo).get());
         turno.setPaciente(pacienteRepository.findById(id_paciente).get());
 

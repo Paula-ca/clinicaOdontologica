@@ -12,6 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.time.LocalDateTime;
 import java.util.Collection;
 
@@ -29,9 +31,9 @@ public class TurnoController {
                 turnoService.getTurno(id));
     }
 
-    @PostMapping("/{id_paciente}/{id_odontologo}/{datetime}")
-    public ResponseEntity<?> crearTurno(@PathVariable Long id_paciente, @PathVariable Long id_odontologo, @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS") LocalDateTime datetime){
-        turnoService.crearTurno(id_paciente,id_odontologo,datetime);
+    @PostMapping("/{id_paciente}/{id_odontologo}/{fecha}/{hora}")
+    public ResponseEntity<?> crearTurno(@PathVariable Long id_paciente, @PathVariable Long id_odontologo, @PathVariable Date fecha, @PathVariable Time hora){
+        turnoService.crearTurno(id_paciente,id_odontologo,fecha,hora);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
@@ -53,9 +55,9 @@ public class TurnoController {
     }
 
     @PutMapping
-    public ResponseEntity<Turno> modificarTurno(@RequestBody Turno turno) {
+    public ResponseEntity<?> modificarTurno(@RequestBody Turno turno){
         turnoService.modificarTurno(turno);
-        return ResponseEntity.ok().body(turno);
+        return ResponseEntity.ok(HttpStatus.OK);
 
     }
 }

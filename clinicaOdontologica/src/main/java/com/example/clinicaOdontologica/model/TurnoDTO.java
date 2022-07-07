@@ -2,16 +2,21 @@ package com.example.clinicaOdontologica.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import java.sql.Date;
+import java.sql.Time;
 import java.time.LocalDateTime;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TurnoDTO {
 
     private Long id;
-
-    private LocalDateTime fechaYHora;
-    private Odontologo odontologo;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
+    private Date fecha;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="hh:mm:ss")
+    private Time hora;
     private Paciente paciente;
+    private Odontologo odontologo;
 
     public TurnoDTO() {
     }
@@ -21,27 +26,35 @@ public class TurnoDTO {
         return id;
     }
 
-    public LocalDateTime getFechaYHora() {
-        return fechaYHora;
+    public Date getFecha() {
+        return fecha;
     }
 
-    public void setFechaYHora(LocalDateTime fechaYHora) {
-        this.fechaYHora = fechaYHora;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 
-    public Odontologo getOdontologo() {
-        return odontologo;
+    public Time getHora() {
+        return hora;
     }
 
-    public void setOdontologo(Odontologo odontologo) {
-        this.odontologo = odontologo;
+    public void setHora(Time hora) {
+        this.hora = hora;
     }
 
-    public Paciente getPaciente() {
-        return paciente;
+    public Long getPaciente_id() {
+        return paciente.getId();
     }
 
     public void setPaciente(Paciente paciente) {
         this.paciente = paciente;
+    }
+
+    public Long getOdontologo_id() {
+        return odontologo.getId();
+    }
+
+    public void setOdontologo(Odontologo odontologo) {
+        this.odontologo = odontologo;
     }
 }

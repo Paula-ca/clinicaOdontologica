@@ -1,11 +1,17 @@
 package com.example.clinicaOdontologica.service.impl;
 
 
+import com.example.clinicaOdontologica.exceptions.BadRequestException;
+import com.example.clinicaOdontologica.exceptions.GlobalExceptionHandler;
+import com.example.clinicaOdontologica.exceptions.ResourceNotFoundException;
+import com.example.clinicaOdontologica.model.Odontologo;
 import com.example.clinicaOdontologica.model.PacienteDTO;
 import com.example.clinicaOdontologica.model.Paciente;
 import com.example.clinicaOdontologica.repository.IPacienteRepository;
 import com.example.clinicaOdontologica.service.IPacienteService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,14 +23,20 @@ import java.util.Set;
 
 @Service
 public class PacienteService implements IPacienteService {
+
+
     @Autowired
     private IPacienteRepository pacienteRepository;
     @Autowired
     ObjectMapper mapper;
 
     @Override
-    public void crearPaciente(Paciente paciente) {
-        pacienteRepository.save(paciente);
+    public void crearPaciente(Paciente paciente) throws BadRequestException {
+        if(findByDni(paciente.getDni())==null){
+            pacienteRepository.save(paciente);
+        }else{
+            throw new BadRequestException("");
+        }
     }
 
     @Override
@@ -56,4 +68,13 @@ public class PacienteService implements IPacienteService {
         return pacientesDTO;
 
     }
-}
+    public Paciente findByDni(String dni){
+        Paciente pacienteFind= null;
+        List<Paciente> pacientes = pacienteRepository.findAll();
+        for(Paciente paciente:pacientes){
+            if(paciente.getDni().equals(dni)){
+                pacienteFind = paciente;
+            }
+        }
+        return pacienteFind;
+    }}

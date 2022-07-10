@@ -1,9 +1,12 @@
 package com.example.clinicaOdontologica.controller;
 
+import com.example.clinicaOdontologica.exceptions.BadRequestException;
+import com.example.clinicaOdontologica.exceptions.ResourceNotFoundException;
 import com.example.clinicaOdontologica.model.OdontologoDTO;
 import com.example.clinicaOdontologica.model.Odontologo;
 
 import com.example.clinicaOdontologica.service.impl.OdontologoService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,20 +18,35 @@ import java.util.Collection;
 @RestController
 @RequestMapping("/odontologos")
 public class OdontologoController {
+
+    private static final Logger logger = Logger.getLogger(OdontologoController.class);
+
     @Autowired
     OdontologoService odontologoService;
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<OdontologoDTO> getOdontologo(@PathVariable Long id){
-        return ResponseEntity.ok().body(
-                odontologoService.getOdontologo(id));
+    public ResponseEntity<OdontologoDTO> getOdontologo(@PathVariable Long id) throws ResourceNotFoundException {
+        try{
+            return ResponseEntity.ok().body(
+                   odontologoService.getOdontologo(id));
+        }catch(Exception ex){
+            throw new ResourceNotFoundException("El odontologo con id "+id+" no existe.");
+        }
     }
 
     @PostMapping
-    public ResponseEntity<Odontologo> crearOdontologo(@RequestBody Odontologo odontologo){
-        odontologoService.crearOdontologo(odontologo);
-        return ResponseEntity.status(HttpStatus.CREATED).body(odontologo);
+    public ResponseEntity<Odontologo> crearOdontologo(@RequestBody Odontologo odontologo) throws BadRequestException {
+        try{
+            odontologoService.crearOdontologo(odontologo);
+            logger.info("El odontologo ha sido creado con exito.");
+            return ResponseEntity.status(HttpStatus.CREATED).body(odontologo);
+        }
+        catch(Exception ex){
+            logger.error("El odontologo que intenta crear ya existe o es inválido.");
+            throw new BadRequestException("El odontologo que intenta crear ya existe o es inválido.");
+
+        }
     }
 
     @DeleteMapping("/{id}")
@@ -37,14 +55,17 @@ public class OdontologoController {
         try {
             odontologoService.eliminarOdontologo(id);
             response = ResponseEntity.ok(HttpStatus.OK);
+            logger.info("El odontologo ha sido eliminado con exito.");
         } catch (Exception e) {
             response = ResponseEntity.internalServerError().body(e.getMessage());
+            logger.info("El odontologo con id "+id+" no existe.");
         }
         return response;
     }
     @PutMapping
     public ResponseEntity<Odontologo> modificarOdontologo(@RequestBody Odontologo odontologo){
         odontologoService.modificarOdontologo(odontologo);
+        logger.info("El odontologo ha sido modificado con exito.");
         return ResponseEntity.ok().body(odontologo);
     }
     @GetMapping

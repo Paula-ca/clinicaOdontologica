@@ -1,10 +1,13 @@
 package com.example.clinicaOdontologica.service.impl;
 
+import com.example.clinicaOdontologica.exceptions.BadRequestException;
+import com.example.clinicaOdontologica.exceptions.GlobalExceptionHandler;
 import com.example.clinicaOdontologica.model.OdontologoDTO;
 import com.example.clinicaOdontologica.model.Odontologo;
 import com.example.clinicaOdontologica.repository.IOdontologoRepository;
 import com.example.clinicaOdontologica.service.IOdontologoService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +17,8 @@ import java.util.Set;
 
 @Service
 public class OdontologoService implements IOdontologoService {
+
+    private static final Logger logger = Logger.getLogger(GlobalExceptionHandler.class);
     @Autowired
     private IOdontologoRepository odontologoRepository;
 
@@ -22,9 +27,12 @@ public class OdontologoService implements IOdontologoService {
 
 
     @Override
-    public void crearOdontologo(Odontologo odontologo) {
-       odontologoRepository.save(odontologo);
-
+    public void crearOdontologo(Odontologo odontologo) throws BadRequestException {
+        if(findByMatricula(odontologo.getMatricula())== null) {
+            odontologoRepository.save(odontologo);
+        }else{
+            throw new BadRequestException("");
+        }
     }
 
     @Override
@@ -56,5 +64,15 @@ public class OdontologoService implements IOdontologoService {
             odontologosDTO.add(mapper.convertValue(odontologo,OdontologoDTO.class));
         }
         return odontologosDTO;
+    }
+    public Odontologo findByMatricula(Integer mat){
+        Odontologo odontologoFind= null;
+        List<Odontologo> odontologos = odontologoRepository.findAll();
+        for(Odontologo odontologo:odontologos){
+            if(odontologo.getMatricula().equals(mat)){
+                odontologoFind = odontologo;
+            }
+        }
+        return odontologoFind;
     }
 }

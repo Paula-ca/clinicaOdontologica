@@ -1,11 +1,11 @@
-//El evento load se ejecuta al cargar la página que muestra la lista de películas
+//El evento load se ejecuta al cargar la página que muestra la lista de odontologos
 window.addEventListener('load', function () {
 
    (function(){
 
 
 
-     //con fetch invocamos a la API de peliculas con el método GET
+     //con fetch invocamos a la API de odontologos con el método GET
 
      //nos devolverá un JSON con una colección de odontologos
 
@@ -25,15 +25,15 @@ window.addEventListener('load', function () {
 
      .then(data => {
 
-     //recorremos la colección de películas del JSON
+     //recorremos la colección de odontologos del JSON
 
         for(odontologo of data){
 
-           //por cada película armaremos una fila de la tabla
+           //por cada odontologo armaremos una fila de la tabla
 
            //cada fila tendrá un ID que luego nos permitirá
 
-           //borrar la fila si eliminamos la película
+           //borrar la fila si eliminamos el odontologo
 
            var table = document.getElementById("odontoTable");
 
@@ -45,13 +45,13 @@ window.addEventListener('load', function () {
 
 
 
-           //por cada película creamos un botón delete que
+           //por cada odontologo creamos un botón delete que
 
            //agregaremos en cada fila para poder eliminar la misma
 
            //dicho botón invocará a la función de JavaScript deleteByKey que se encargará
 
-           //de llamar a la API para eliminar una película
+           //de llamar a la API para eliminar un odontologo
 
            let deleteButton = '<button' +
 
@@ -67,7 +67,7 @@ window.addEventListener('load', function () {
 
 
 
-           //por cada película creamos un botón que muestra el ID
+           //por cada odontologo creamos un botón que muestra el ID
 
            //y que al hacerle clic invocará a la función de JavaScript findBy
 
@@ -93,7 +93,7 @@ window.addEventListener('load', function () {
 
            //como primera columna pondremos el botón modificar
 
-           //luego los datos de la película
+           //luego los datos del odontologo
 
            //como última columna, el botón eliminar
 
@@ -103,7 +103,7 @@ window.addEventListener('load', function () {
 
                  '<td class=\"td_nombre\">' + odontologo.nombre.toUpperCase() + '</td>' +
                  '<td class=\"td_apellido\">' + odontologo.apellido.toUpperCase() + '</td>' +
-                 '<td class=\"td_matricula\">' + odontologo.matricula.toUpperCase() + '</td>' +
+                 '<td class=\"td_matricula\">' + odontologo.matricula + '</td>' +
 
                    '<td>' + deleteButton + '</td>';
 

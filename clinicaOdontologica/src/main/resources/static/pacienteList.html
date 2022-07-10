@@ -34,7 +34,7 @@
 
         <li class="nav-item">
 
-            <a class="nav-link" href="index.html">Volver</a>
+            <a class="nav-link" href="/index.html">Ir al menú principal</a>
 
         </li>
 
@@ -44,11 +44,7 @@
 
         </li>
 
-        <li class="nav-item">
 
-            <a class="nav-link" href="/pacienteList.html/">Todos</a>
-
-        </li>
 
     </ul>
 
@@ -58,7 +54,7 @@
 
         <h1>Pacientes</h1>
 
-        <div class="row col-md-6 table-responsive">
+        <div class="row col-md-10 table-responsive">
 
             <table id="pacienteTable" class="table table-striped">
 
@@ -74,7 +70,9 @@
 
                     <th>DNI</th>
 
-                    <th>Fecha Ingreso</th>
+                    <th>Email</th>
+
+                    <th>Fecha Alta</th>
 
 
 
@@ -145,11 +143,21 @@
                 </div>
                 <div class="form-group">
 
-                    <label >Fecha alta:</label>
+                    <label >Email:</label>
 
                     <input type="text" class="form-control"
 
-                           placeholder="Fecha Ingreso" id="fecha_ingreso">
+                           placeholder="email" id="email">
+
+
+                </div>
+                <div class="form-group">
+
+                    <label >Fecha Alta:</label>
+
+                    <input type="text" class="form-control"
+
+                           placeholder="yyyy-mm-dd" id="fecha_ingreso">
 
 
                 </div>

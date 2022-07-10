@@ -1,6 +1,8 @@
 package com.example.clinicaOdontologica.controller;
 
 
+import com.example.clinicaOdontologica.exceptions.BadRequestException;
+import com.example.clinicaOdontologica.exceptions.ResourceNotFoundException;
 import com.example.clinicaOdontologica.model.PacienteDTO;
 import com.example.clinicaOdontologica.model.Paciente;
 import com.example.clinicaOdontologica.service.impl.PacienteService;
@@ -9,27 +11,42 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
+import org.apache.log4j.Logger;
 import java.util.Collection;
+
 
 @RestController
 @Controller
 @RequestMapping("/pacientes")
 public class PacienteController {
 
+    private static final Logger logger = Logger.getLogger(PacienteController.class);
+
     @Autowired
     PacienteService pacienteService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<PacienteDTO> getPaciente(@PathVariable Long id){
-        return ResponseEntity.ok().body(
-                pacienteService.getPaciente(id));
+    public ResponseEntity<PacienteDTO> getPaciente(@PathVariable Long id)throws ResourceNotFoundException {
+        try{
+            return ResponseEntity.ok().body(
+                    pacienteService.getPaciente(id));
+        }catch(Exception ex){
+            throw new ResourceNotFoundException("El paciente con id "+id+" no existe.");
+        }
+
     }
 
     @PostMapping
-    public ResponseEntity<Paciente> crearPaciente(@RequestBody Paciente paciente){
-        pacienteService.crearPaciente(paciente);
-        return ResponseEntity.status(HttpStatus.CREATED).body(paciente);
+    public ResponseEntity<Paciente> crearPaciente(@RequestBody Paciente paciente) throws BadRequestException {
+        try{
+            pacienteService.crearPaciente(paciente);
+            logger.info("El paciente ha sido creado con exito.");
+            return ResponseEntity.status(HttpStatus.CREATED).body(paciente);
+        }catch(Exception ex){
+            logger.error("El paciente que intenta crear ya existe o es inválido.");
+            throw new BadRequestException("El paciente que intenta crear ya existe o es inválido.");
+
+        }
     }
 
     @DeleteMapping("/{id}")
@@ -38,14 +55,17 @@ public class PacienteController {
         try {
             pacienteService.eliminarPaciente(id);
             response = ResponseEntity.ok(HttpStatus.OK);
+            logger.info("El paciente ha sido eliminado con exito.");
         } catch (Exception e) {
             response = ResponseEntity.internalServerError().body(e.getMessage());
+            logger.info("El paciente con id "+id+" no existe.");
         }
         return response;
     }
     @PutMapping
     public ResponseEntity<Paciente> modificarPaciente(@RequestBody Paciente paciente){
         pacienteService.modificarPaciente(paciente);
+        logger.info("El paciente ha sido modificado con exito.");
         return ResponseEntity.ok().body(paciente);
     }
     @GetMapping

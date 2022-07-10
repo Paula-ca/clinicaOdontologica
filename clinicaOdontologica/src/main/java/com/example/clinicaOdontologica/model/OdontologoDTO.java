@@ -8,7 +8,7 @@ public class OdontologoDTO {
     private Long id;
     private String nombre;
     private String apellido;
-    private String matricula;
+    private Integer matricula;
 
 
 
@@ -19,11 +19,11 @@ public class OdontologoDTO {
         return id;
     }
 
-    public String getMatricula() {
+    public Integer getMatricula() {
         return matricula;
     }
 
-    public void setMatricula(String matricula) {
+    public void setMatricula(Integer matricula) {
         this.matricula = matricula;
     }
 

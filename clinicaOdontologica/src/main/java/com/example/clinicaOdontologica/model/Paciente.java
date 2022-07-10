@@ -34,10 +34,32 @@ public class Paciente{
     @JoinColumn(name="domicilio_id",referencedColumnName = "id")
     private Domicilio domicilio;
 
-    @OneToMany(mappedBy = "paciente")
+    @OneToMany(mappedBy = "paciente",cascade = CascadeType.MERGE)
     @JsonIgnore
     private Set<Turno> turnos=new HashSet<>();
 
+    public Paciente() {
+    }
+
+    public Paciente(Long id, String nombre, String apellido, String dni, String email, Date fechaIngreso, Domicilio domicilio, Set<Turno> turnos) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.dni = dni;
+        this.email = email;
+        this.fechaIngreso = fechaIngreso;
+        this.domicilio = domicilio;
+        this.turnos = turnos;
+    }
+
+    public Paciente(String nombre, String apellido, String dni, String email, Date fechaIngreso, Domicilio domicilio) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.dni = dni;
+        this.email = email;
+        this.fechaIngreso = fechaIngreso;
+        this.domicilio = domicilio;
+    }
 
     public void setDomicilio(Domicilio domicilio) {
         this.domicilio = domicilio;

@@ -11,6 +11,7 @@ public class PacienteDTO {
     private String nombre;
     private String apellido;
     private String dni;
+    private String email;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
     private Date fechaIngreso;
 
@@ -51,5 +52,13 @@ public class PacienteDTO {
 
     public void setFechaIngreso(Date fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

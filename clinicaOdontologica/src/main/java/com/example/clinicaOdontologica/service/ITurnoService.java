@@ -1,5 +1,6 @@
 package com.example.clinicaOdontologica.service;
 
+import com.example.clinicaOdontologica.exceptions.BadRequestException;
 import com.example.clinicaOdontologica.model.TurnoDTO;
 import com.example.clinicaOdontologica.model.Turno;
 
@@ -9,7 +10,7 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 public interface ITurnoService {
-    void crearTurno(Long id_paciente, Long id_odontologo, Date fecha , Time hora);
+    void crearTurno(Turno turno) throws BadRequestException;
     TurnoDTO getTurno(Long id);
     void modificarTurno(Turno turno);
     void eliminarTurno(Long id);

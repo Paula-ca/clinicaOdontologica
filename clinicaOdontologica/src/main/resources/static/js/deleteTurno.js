@@ -2,11 +2,11 @@ function deleteBy(id)
 
 {
 
-         //con fetch invocamos a la API de odontologos con el método DELETE
+         //con fetch invocamos a la API de turnos con el método DELETE
 
          //pasándole el ID en la URL
 
-         const url = '/odontologos/'+ id;
+         const url = '/turnos/'+ id;
 
          const settings = {
 
@@ -20,7 +20,7 @@ function deleteBy(id)
 
 
 
-         //borrar la fila del odontologo eliminado
+         //borrar la fila del turno eliminado
 
          let row_id = "#tr_" + id;
 

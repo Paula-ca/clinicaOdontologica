@@ -12,7 +12,7 @@ import java.util.Set;
 public class Odontologo {
     @Id
     @Column(name = "id", nullable = false)
-    @SequenceGenerator(name="odontologo_sequence",sequenceName = "odontologo_sequence")
+    @SequenceGenerator(name="odontologo_sequence",sequenceName = "odontologo_sequence",allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "odontologo_sequence")
     private Long id;
 
@@ -20,10 +20,26 @@ public class Odontologo {
     private String apellido;
     private Integer matricula;
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "odontologo")
+    @OneToMany(mappedBy = "odontologo",cascade = CascadeType.MERGE)
     @JsonIgnore
     private Set<Turno> turnos=new HashSet<>();
 
+    public Odontologo(String nombre, String apellido, Integer matricula) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.matricula = matricula;
+    }
+
+    public Odontologo() {
+    }
+
+    public Odontologo(Long id, String nombre, String apellido, Integer matricula, Set<Turno> turnos) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.matricula = matricula;
+        this.turnos = turnos;
+    }
 
     public String getNombre() {
         return nombre;

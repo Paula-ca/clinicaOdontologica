@@ -11,7 +11,7 @@ import java.util.Set;
 
 public interface IPacienteService {
     void crearPaciente(Paciente paciente)throws BadRequestException;
-    PacienteDTO getPaciente(Long id);
+    PacienteDTO getPaciente(Long id)throws ResourceNotFoundException;
     void modificarPaciente(Paciente paciente);
     void eliminarPaciente(Long id);
     Set<PacienteDTO> getAll();

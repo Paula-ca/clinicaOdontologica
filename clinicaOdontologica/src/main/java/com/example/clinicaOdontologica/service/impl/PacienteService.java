@@ -32,19 +32,25 @@ public class PacienteService implements IPacienteService {
 
     @Override
     public void crearPaciente(Paciente paciente) throws BadRequestException {
-        if(findByDni(paciente.getDni())==null){
-            pacienteRepository.save(paciente);
-        }else{
-            throw new BadRequestException("");
+
+            if (findByDni(paciente.getDni()) == false) {
+                pacienteRepository.save(paciente);
+            }else{
+                throw new BadRequestException("El paciente que intenta crear ya existe o es inválido.");
         }
     }
 
     @Override
-    public PacienteDTO getPaciente(Long id) {
+    public PacienteDTO getPaciente(Long id) throws ResourceNotFoundException{
         PacienteDTO pacienteDTO = null;
+        try{
         Paciente paciente = pacienteRepository.findById(id).get();
         if (paciente != null) {
             pacienteDTO = mapper.convertValue(paciente, PacienteDTO.class);
+
+        }
+        }catch(Exception ex){
+            throw new ResourceNotFoundException("El paciente con id "+id+" no existe.");
         }
         return pacienteDTO;
     }
@@ -56,6 +62,7 @@ public class PacienteService implements IPacienteService {
     @Override
     public void eliminarPaciente(Long id) {
         pacienteRepository.deleteById(id);
+
     }
 
     @Override
@@ -68,12 +75,12 @@ public class PacienteService implements IPacienteService {
         return pacientesDTO;
 
     }
-    public Paciente findByDni(String dni){
-        Paciente pacienteFind= null;
+    public Boolean findByDni(String dni){
+        boolean pacienteFind= false;
         List<Paciente> pacientes = pacienteRepository.findAll();
         for(Paciente paciente:pacientes){
             if(paciente.getDni().equals(dni)){
-                pacienteFind = paciente;
+                pacienteFind = true;
             }
         }
         return pacienteFind;

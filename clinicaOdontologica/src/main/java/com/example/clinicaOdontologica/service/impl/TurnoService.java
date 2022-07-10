@@ -2,17 +2,17 @@ package com.example.clinicaOdontologica.service.impl;
 
 import com.example.clinicaOdontologica.exceptions.BadRequestException;
 import com.example.clinicaOdontologica.exceptions.GlobalExceptionHandler;
+import com.example.clinicaOdontologica.exceptions.ResourceNotFoundException;
 import com.example.clinicaOdontologica.model.*;
 
+import com.example.clinicaOdontologica.repository.IOdontologoRepository;
+import com.example.clinicaOdontologica.repository.IPacienteRepository;
 import com.example.clinicaOdontologica.repository.ITurnoRepository;
 import com.example.clinicaOdontologica.service.ITurnoService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.log4j.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.sql.Date;
-import java.sql.Time;
 
 import java.util.HashSet;
 import java.util.List;
@@ -24,6 +24,10 @@ public class TurnoService implements ITurnoService {
 
     @Autowired
     private ITurnoRepository turnoRepository;
+    @Autowired
+    private IOdontologoRepository odontologoRepository;
+    @Autowired
+    private IPacienteRepository pacienteRepository;
 
 
     @Autowired
@@ -31,20 +35,28 @@ public class TurnoService implements ITurnoService {
 
     @Override
     public void crearTurno(Turno turno) throws BadRequestException {
-       if(findTurno(turno.getOdontologo(),turno.getPaciente())==null ){
-           turnoRepository.save(turno);
-       }else{
-           throw new BadRequestException("");
-       }
+        Odontologo odontologoTurno = turno.getOdontologo();
+        Paciente pacienteTurno = turno.getPaciente();
+    try{
+        if(odontologoRepository.findById(odontologoTurno.getId())!=null && pacienteRepository.findById(pacienteTurno.getId())!=null) {
+            turnoRepository.save(turno);}
+    }catch(Exception e){
+        throw new BadRequestException("El odontologo o paciente del turno no existe.");
+
+    }
     }
 
     @Override
-    public TurnoDTO getTurno(Long id) {
+    public TurnoDTO getTurno(Long id) throws ResourceNotFoundException{
         TurnoDTO turnoDTO = null;
-        Turno turno = turnoRepository.findById(id).get();
+        try {
+            Turno turno = turnoRepository.findById(id).get();
 
-        if (turno != null) {
-            turnoDTO = mapper.convertValue(turno,TurnoDTO.class);
+            if (turno != null) {
+                turnoDTO = mapper.convertValue(turno, TurnoDTO.class);
+            }
+        }catch (Exception ex){
+            throw new ResourceNotFoundException("El turno con id "+id+" no existe.");
         }
         return turnoDTO;
     }
@@ -68,14 +80,5 @@ public class TurnoService implements ITurnoService {
         }
         return turnosDTO;
     }
-    public Turno findTurno(Odontologo odontologo, Paciente paciente){
-        Turno turno = null;
-        List<Turno> turnos = turnoRepository.findAll();
-        for(Turno turnoList:turnos) {
-            if (turnoList.getOdontologo().getId()==odontologo.getId() &&turnoList.getPaciente().getId() == paciente.getId()){
-                turno = turnoList;
-            }
-        }
-        return turno;
-    }
+
 }

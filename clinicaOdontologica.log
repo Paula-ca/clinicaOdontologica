@@ -102,3 +102,30 @@
 2022-07-10 00:17:06 ERROR TurnoController:51 - El turno que intenta crear ya existe o es invalido.
 2022-07-10 00:17:06 ERROR GlobalExceptionHandler:23 - El turno que intenta crear ya existe o es invalido.
 2022-07-10 00:17:12 ERROR GlobalExceptionHandler:17 - El turno con id 7 no existe.
+2022-07-10 19:09:49 ERROR TurnoController:51 - El turno que intenta crear ya existe o es invalido.
+2022-07-10 19:09:49 ERROR GlobalExceptionHandler:23 - El turno que intenta crear ya existe o es invalido.
+2022-07-10 19:21:44 INFO  TurnoController:46 - El turno ha sido creado con exito.
+2022-07-10 19:22:32 INFO  TurnoController:46 - El turno ha sido creado con exito.
+2022-07-10 19:23:14 ERROR GlobalExceptionHandler:17 - El paciente con id 3 no existe.
+2022-07-10 19:31:14 ERROR GlobalExceptionHandler:23 - El odontologo o paciente no existen.
+2022-07-10 19:33:22 ERROR GlobalExceptionHandler:23 - El odontologo o paciente no existen.
+2022-07-10 19:34:04 ERROR GlobalExceptionHandler:23 - El odontologo o paciente no existen.
+2022-07-10 19:38:08 INFO  PacienteController:43 - El paciente ha sido creado con exito.
+2022-07-10 19:38:11 INFO  PacienteController:43 - El paciente ha sido creado con exito.
+2022-07-10 19:38:13 INFO  PacienteController:43 - El paciente ha sido creado con exito.
+2022-07-10 19:38:14 INFO  PacienteController:43 - El paciente ha sido creado con exito.
+2022-07-10 19:55:43 INFO  PacienteController:43 - El paciente ha sido creado con exito.
+2022-07-10 19:55:47 INFO  PacienteController:43 - El paciente ha sido creado con exito.
+2022-07-10 19:55:49 INFO  PacienteController:43 - El paciente ha sido creado con exito.
+2022-07-10 19:58:30 ERROR OdontologoController:46 - El odontologo que intenta crear ya existe o es inválido.
+2022-07-10 19:58:30 ERROR GlobalExceptionHandler:23 - El odontologo que intenta crear ya existe o es inválido.
+2022-07-10 19:58:46 INFO  PacienteController:43 - El paciente ha sido creado con exito.
+2022-07-10 19:58:48 INFO  PacienteController:43 - El paciente ha sido creado con exito.
+2022-07-10 20:00:20 ERROR GlobalExceptionHandler:23 - El paciente que intenta crear ya existe o es inválido.
+2022-07-10 20:04:58 ERROR GlobalExceptionHandler:23 - El paciente que intenta crear ya existe o es inválido.
+2022-07-10 20:08:54 ERROR GlobalExceptionHandler:17 - El paciente con id 7 no existe.
+2022-07-10 20:12:52 ERROR GlobalExceptionHandler:23 - El odontologo que intenta crear ya existe o es inválido.
+2022-07-10 20:12:58 ERROR GlobalExceptionHandler:17 - El odontologo con id 9 no existe.
+2022-07-10 20:16:40 ERROR GlobalExceptionHandler:17 - El turno con id 9 no existe.
+2022-07-10 20:17:01 ERROR GlobalExceptionHandler:23 - El odontologo o paciente no existen.
+2022-07-10 20:20:44 ERROR GlobalExceptionHandler:23 - El odontologo o paciente del turno no existe.

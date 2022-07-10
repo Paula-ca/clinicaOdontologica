@@ -31,27 +31,16 @@ public class TurnoController {
 
     @GetMapping("/{id}")
     public ResponseEntity<TurnoDTO> getTurno(@PathVariable Long id) throws ResourceNotFoundException {
-        try{
             return ResponseEntity.ok().body(
                     turnoService.getTurno(id));
-        }catch(Exception ex){
-            throw new ResourceNotFoundException("El turno con id "+id+" no existe.");
-        }
-
     }
 
     @PostMapping
     public ResponseEntity<?> crearTurno(@RequestBody Turno turno) throws BadRequestException {
-        try{
-            turnoService.crearTurno(turno);
-            logger.info("El turno ha sido creado con exito.");
-            return ResponseEntity.status(HttpStatus.CREATED).body(turno);
-        }
-        catch(Exception ex){
-            logger.error("El turno que intenta crear ya existe o es invalido.");
-            throw new BadRequestException("El turno que intenta crear ya existe o es invalido.");
+                turnoService.crearTurno(turno);
+                logger.info("El turno ha sido creado con exito.");
+                return ResponseEntity.status(HttpStatus.CREATED).body(turno);
 
-        }
     }
 
     @GetMapping
@@ -77,6 +66,7 @@ public class TurnoController {
     public ResponseEntity<?> modificarTurno(@RequestBody Turno turno){
         turnoService.modificarTurno(turno);
         logger.info("El turno ha sido modificado con exito.");
+
         return ResponseEntity.ok(HttpStatus.OK);
 
     }

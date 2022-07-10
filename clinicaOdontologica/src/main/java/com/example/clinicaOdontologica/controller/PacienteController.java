@@ -27,26 +27,17 @@ public class PacienteController {
 
     @GetMapping("/{id}")
     public ResponseEntity<PacienteDTO> getPaciente(@PathVariable Long id)throws ResourceNotFoundException {
-        try{
             return ResponseEntity.ok().body(
                     pacienteService.getPaciente(id));
-        }catch(Exception ex){
-            throw new ResourceNotFoundException("El paciente con id "+id+" no existe.");
-        }
 
     }
 
     @PostMapping
     public ResponseEntity<Paciente> crearPaciente(@RequestBody Paciente paciente) throws BadRequestException {
-        try{
-            pacienteService.crearPaciente(paciente);
-            logger.info("El paciente ha sido creado con exito.");
-            return ResponseEntity.status(HttpStatus.CREATED).body(paciente);
-        }catch(Exception ex){
-            logger.error("El paciente que intenta crear ya existe o es inválido.");
-            throw new BadRequestException("El paciente que intenta crear ya existe o es inválido.");
+        pacienteService.crearPaciente(paciente);
+        logger.info("El paciente ha sido creado con exito.");
+        return ResponseEntity.status(HttpStatus.CREATED).body(paciente);
 
-        }
     }
 
     @DeleteMapping("/{id}")

@@ -2,6 +2,7 @@ package com.example.clinicaOdontologica.service.impl;
 
 import com.example.clinicaOdontologica.exceptions.BadRequestException;
 import com.example.clinicaOdontologica.exceptions.GlobalExceptionHandler;
+import com.example.clinicaOdontologica.exceptions.ResourceNotFoundException;
 import com.example.clinicaOdontologica.model.OdontologoDTO;
 import com.example.clinicaOdontologica.model.Odontologo;
 import com.example.clinicaOdontologica.repository.IOdontologoRepository;
@@ -28,19 +29,23 @@ public class OdontologoService implements IOdontologoService {
 
     @Override
     public void crearOdontologo(Odontologo odontologo) throws BadRequestException {
-        if(findByMatricula(odontologo.getMatricula())== null) {
+        if(findByMatricula(odontologo.getMatricula())== false) {
             odontologoRepository.save(odontologo);
         }else{
-            throw new BadRequestException("");
+            throw new BadRequestException("El odontologo que intenta crear ya existe o es inválido.");
         }
     }
 
     @Override
-    public OdontologoDTO getOdontologo(Long id) {
+    public OdontologoDTO getOdontologo(Long id) throws ResourceNotFoundException{
         OdontologoDTO odontologoDTO = null;
-        Odontologo odontologo = odontologoRepository.findById(id).get();
-        if (odontologo != null) {
-            odontologoDTO = mapper.convertValue(odontologo,OdontologoDTO.class);
+        try {
+            Odontologo odontologo = odontologoRepository.findById(id).get();
+            if (odontologo != null) {
+                odontologoDTO = mapper.convertValue(odontologo, OdontologoDTO.class);
+            }
+        }catch (Exception ex){
+            throw new ResourceNotFoundException("El odontologo con id "+id+" no existe.");
         }
         return odontologoDTO;
 
@@ -65,12 +70,12 @@ public class OdontologoService implements IOdontologoService {
         }
         return odontologosDTO;
     }
-    public Odontologo findByMatricula(Integer mat){
-        Odontologo odontologoFind= null;
+    public Boolean findByMatricula(Integer mat){
+        boolean odontologoFind= false;
         List<Odontologo> odontologos = odontologoRepository.findAll();
         for(Odontologo odontologo:odontologos){
             if(odontologo.getMatricula().equals(mat)){
-                odontologoFind = odontologo;
+                odontologoFind = true;
             }
         }
         return odontologoFind;

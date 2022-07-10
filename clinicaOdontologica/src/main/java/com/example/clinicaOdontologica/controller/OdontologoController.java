@@ -27,26 +27,16 @@ public class OdontologoController {
 
     @GetMapping("/{id}")
     public ResponseEntity<OdontologoDTO> getOdontologo(@PathVariable Long id) throws ResourceNotFoundException {
-        try{
             return ResponseEntity.ok().body(
                    odontologoService.getOdontologo(id));
-        }catch(Exception ex){
-            throw new ResourceNotFoundException("El odontologo con id "+id+" no existe.");
-        }
     }
 
     @PostMapping
     public ResponseEntity<Odontologo> crearOdontologo(@RequestBody Odontologo odontologo) throws BadRequestException {
-        try{
             odontologoService.crearOdontologo(odontologo);
             logger.info("El odontologo ha sido creado con exito.");
             return ResponseEntity.status(HttpStatus.CREATED).body(odontologo);
-        }
-        catch(Exception ex){
-            logger.error("El odontologo que intenta crear ya existe o es inválido.");
-            throw new BadRequestException("El odontologo que intenta crear ya existe o es inválido.");
 
-        }
     }
 
     @DeleteMapping("/{id}")

@@ -30,6 +30,16 @@ public class Turno {
     @JoinColumn(name = "paciente_id",nullable = false)
     private Paciente paciente;
 
+    public Turno() {
+    }
+
+    public Turno(Date fecha, Time hora, Odontologo odontologo, Paciente paciente) {
+        this.fecha = fecha;
+        this.hora = hora;
+        this.odontologo = odontologo;
+        this.paciente = paciente;
+    }
+
     public Long getId() {
         return id;
     }

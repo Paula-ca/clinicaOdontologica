@@ -1,4 +1,4 @@
-package com.example.clinicaOdontologica.model;
+package com.example.clinicaOdontologica.entity;
 
 import javax.persistence.*;
 

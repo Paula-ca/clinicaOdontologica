@@ -1,9 +1,9 @@
 package com.example.clinicaOdontologica.service.impl;
 
+import com.example.clinicaOdontologica.dto.TurnoDTO;
 import com.example.clinicaOdontologica.exceptions.BadRequestException;
-import com.example.clinicaOdontologica.exceptions.GlobalExceptionHandler;
 import com.example.clinicaOdontologica.exceptions.ResourceNotFoundException;
-import com.example.clinicaOdontologica.model.*;
+import com.example.clinicaOdontologica.entity.*;
 
 import com.example.clinicaOdontologica.repository.IOdontologoRepository;
 import com.example.clinicaOdontologica.repository.IPacienteRepository;

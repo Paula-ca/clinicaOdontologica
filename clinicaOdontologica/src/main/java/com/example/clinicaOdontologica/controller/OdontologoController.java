@@ -2,8 +2,8 @@ package com.example.clinicaOdontologica.controller;
 
 import com.example.clinicaOdontologica.exceptions.BadRequestException;
 import com.example.clinicaOdontologica.exceptions.ResourceNotFoundException;
-import com.example.clinicaOdontologica.model.OdontologoDTO;
-import com.example.clinicaOdontologica.model.Odontologo;
+import com.example.clinicaOdontologica.dto.OdontologoDTO;
+import com.example.clinicaOdontologica.entity.Odontologo;
 
 import com.example.clinicaOdontologica.service.impl.OdontologoService;
 import org.apache.log4j.Logger;

@@ -1,9 +1,7 @@
 package com.example.clinicaOdontologica.service.impl;
 
-import com.example.clinicaOdontologica.model.Domicilio;
-import com.example.clinicaOdontologica.model.DomicilioDTO;
-import com.example.clinicaOdontologica.model.Odontologo;
-import com.example.clinicaOdontologica.model.OdontologoDTO;
+import com.example.clinicaOdontologica.entity.Domicilio;
+import com.example.clinicaOdontologica.dto.DomicilioDTO;
 import com.example.clinicaOdontologica.repository.IDomicilioRepository;
 import com.example.clinicaOdontologica.service.IDomicilioService;
 import com.fasterxml.jackson.databind.ObjectMapper;

@@ -1,27 +1,48 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <title>Clinica Odontologica</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clinica Odontologica</title>
+
+  <!-- ---------------- estilos compartidos de login y signup ---------------- -->
+  <link rel="stylesheet" href="/styles/ingreso.css">
+
+  <!-- ---------------------- logica aplicada en login ----------------------- -->
+  <!-- <script src="/scripts/utils.js"></script> -->
+  <script src="/scripts/login.js" defer></script>
 
 </head>
+
 <body>
-<div class="container">
-    <ul class="nav nav-pills">
-        <li class="nav-item">
-            <a class="nav-link" href="/altaOdonto.html">Alta de Odontologo</a>
-            <a class="nav-link" href="/altaPaciente.html">Alta de Paciente</a>
-            <a class="nav-link" href="/altaTurno.html">Crear nuevo Turno</a>
-
-        </li>
-    </ul>
-
-    <hr>
+<div class="left">
+  <img src="/assets/persona-login.png" alt="">
 </div>
+
+<div class="right">
+  <form>
+    <div class="form-header">
+      <p>Clinica Odontologica</p>
+    </div>
+    <h1>Ingresar</h1>
+
+
+    <label>
+      Usuario:
+      <input id="inputEmail" type="text">
+    </label>
+    <label>
+      Contraseña:
+      <input id="inputPassword" type="password">
+    </label>
+
+    <button type="submit">Ingresar</button>
+
+  </form>
+</div>
+
 </body>
+
 </html>

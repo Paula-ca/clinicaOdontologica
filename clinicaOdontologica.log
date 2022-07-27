@@ -129,3 +129,10 @@
 2022-07-10 20:16:40 ERROR GlobalExceptionHandler:17 - El turno con id 9 no existe.
 2022-07-10 20:17:01 ERROR GlobalExceptionHandler:23 - El odontologo o paciente no existen.
 2022-07-10 20:20:44 ERROR GlobalExceptionHandler:23 - El odontologo o paciente del turno no existe.
+2022-07-27 19:36:23 INFO  OdontologoController:37 - El odontologo ha sido creado con exito.
+2022-07-27 19:57:41 INFO  PacienteController:59 - El paciente ha sido modificado con exito.
+2022-07-27 19:58:01 INFO  PacienteController:59 - El paciente ha sido modificado con exito.
+2022-07-27 19:58:19 INFO  PacienteController:59 - El paciente ha sido modificado con exito.
+2022-07-27 19:58:38 INFO  PacienteController:59 - El paciente ha sido modificado con exito.
+2022-07-27 19:58:42 INFO  PacienteController:52 - El paciente con id 2 no existe.
+2022-07-27 19:59:02 INFO  PacienteController:52 - El paciente con id 2 no existe.

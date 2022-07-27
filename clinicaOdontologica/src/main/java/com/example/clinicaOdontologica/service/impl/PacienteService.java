@@ -2,16 +2,13 @@ package com.example.clinicaOdontologica.service.impl;
 
 
 import com.example.clinicaOdontologica.exceptions.BadRequestException;
-import com.example.clinicaOdontologica.exceptions.GlobalExceptionHandler;
 import com.example.clinicaOdontologica.exceptions.ResourceNotFoundException;
-import com.example.clinicaOdontologica.model.Odontologo;
-import com.example.clinicaOdontologica.model.PacienteDTO;
-import com.example.clinicaOdontologica.model.Paciente;
+import com.example.clinicaOdontologica.dto.PacienteDTO;
+import com.example.clinicaOdontologica.entity.Paciente;
 import com.example.clinicaOdontologica.repository.IPacienteRepository;
 import com.example.clinicaOdontologica.service.IPacienteService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -2,22 +2,16 @@ package com.example.clinicaOdontologica.controller;
 
 import com.example.clinicaOdontologica.exceptions.BadRequestException;
 import com.example.clinicaOdontologica.exceptions.ResourceNotFoundException;
-import com.example.clinicaOdontologica.model.TurnoDTO;
-import com.example.clinicaOdontologica.model.Turno;
+import com.example.clinicaOdontologica.dto.TurnoDTO;
+import com.example.clinicaOdontologica.entity.Turno;
 
-import com.example.clinicaOdontologica.service.impl.OdontologoService;
-import com.example.clinicaOdontologica.service.impl.PacienteService;
 import com.example.clinicaOdontologica.service.impl.TurnoService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Date;
-import java.sql.Time;
-import java.time.LocalDateTime;
 import java.util.Collection;
 
 @RestController

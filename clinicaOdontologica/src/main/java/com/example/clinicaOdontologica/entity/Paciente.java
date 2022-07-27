@@ -1,14 +1,12 @@
-package com.example.clinicaOdontologica.model;
+package com.example.clinicaOdontologica.entity;
 
 
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.boot.model.relational.Sequence;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -50,6 +48,14 @@ public class Paciente{
         this.fechaIngreso = fechaIngreso;
         this.domicilio = domicilio;
         this.turnos = turnos;
+    }
+
+    public Paciente(String nombre, String apellido, String dni, String email, Domicilio domicilio) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.dni = dni;
+        this.email = email;
+        this.domicilio = domicilio;
     }
 
     public Paciente(String nombre, String apellido, String dni, String email, Date fechaIngreso, Domicilio domicilio) {

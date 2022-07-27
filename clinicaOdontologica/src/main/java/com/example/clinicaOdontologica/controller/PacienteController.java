@@ -3,8 +3,8 @@ package com.example.clinicaOdontologica.controller;
 
 import com.example.clinicaOdontologica.exceptions.BadRequestException;
 import com.example.clinicaOdontologica.exceptions.ResourceNotFoundException;
-import com.example.clinicaOdontologica.model.PacienteDTO;
-import com.example.clinicaOdontologica.model.Paciente;
+import com.example.clinicaOdontologica.dto.PacienteDTO;
+import com.example.clinicaOdontologica.entity.Paciente;
 import com.example.clinicaOdontologica.service.impl.PacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

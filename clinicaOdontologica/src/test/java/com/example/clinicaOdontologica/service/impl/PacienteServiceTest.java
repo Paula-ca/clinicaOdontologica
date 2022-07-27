@@ -1,10 +1,9 @@
 package com.example.clinicaOdontologica.service.impl;
 
 import com.example.clinicaOdontologica.exceptions.BadRequestException;
-import com.example.clinicaOdontologica.model.Domicilio;
-import com.example.clinicaOdontologica.model.Odontologo;
-import com.example.clinicaOdontologica.model.Paciente;
-import com.example.clinicaOdontologica.model.PacienteDTO;
+import com.example.clinicaOdontologica.entity.Domicilio;
+import com.example.clinicaOdontologica.entity.Paciente;
+import com.example.clinicaOdontologica.dto.PacienteDTO;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.Assert;

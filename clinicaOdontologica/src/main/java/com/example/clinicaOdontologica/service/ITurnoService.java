@@ -2,12 +2,9 @@ package com.example.clinicaOdontologica.service;
 
 import com.example.clinicaOdontologica.exceptions.BadRequestException;
 import com.example.clinicaOdontologica.exceptions.ResourceNotFoundException;
-import com.example.clinicaOdontologica.model.TurnoDTO;
-import com.example.clinicaOdontologica.model.Turno;
+import com.example.clinicaOdontologica.dto.TurnoDTO;
+import com.example.clinicaOdontologica.entity.Turno;
 
-import java.sql.Date;
-import java.sql.Time;
-import java.time.LocalDateTime;
 import java.util.Set;
 
 public interface ITurnoService {

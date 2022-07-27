@@ -1,4 +1,4 @@
-package com.example.clinicaOdontologica.model;
+package com.example.clinicaOdontologica.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

@@ -1,7 +1,7 @@
 package com.example.clinicaOdontologica.service;
 
-import com.example.clinicaOdontologica.model.Domicilio;
-import com.example.clinicaOdontologica.model.DomicilioDTO;
+import com.example.clinicaOdontologica.entity.Domicilio;
+import com.example.clinicaOdontologica.dto.DomicilioDTO;
 
 import java.util.Set;
 

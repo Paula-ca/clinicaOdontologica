@@ -1,11 +1,12 @@
-package com.example.clinicaOdontologica.model;
+package com.example.clinicaOdontologica.dto;
 
+import com.example.clinicaOdontologica.entity.Odontologo;
+import com.example.clinicaOdontologica.entity.Paciente;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.sql.Date;
 import java.sql.Time;
-import java.time.LocalDateTime;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TurnoDTO {
